@@ -52,9 +52,9 @@ A neural network is a circuit of neurons(nodes). The connections of the biologic
 For each layer we need an activation function. For the intermediate layers I used the ReLu activation function because it reduces the vanishing gradient after propagation and has a better convergence. On the last layer I used the softmax activation function. The type of layer used is Dense because the neurons are completely interconnected. 
 
 > model.add(layers.Dense(128, input_shape = (train_data[1],))) 
-> model.add(layers.Dense((128, activation = ‘relu’))
-> model.add(layers.Dense((128, activation = ‘relu’)) 
-> model.add(layers.Dense((2, activation = ‘softmax’)) 
+model.add(layers.Dense((128, activation = ‘relu’))
+model.add(layers.Dense((128, activation = ‘relu’)) 
+model.add(layers.Dense((2, activation = ‘softmax’)) 
 
 
 I trained this on 100 epochs and batch_size = 128. 
