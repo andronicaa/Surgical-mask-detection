@@ -16,7 +16,7 @@ real cepstral of a windowed short-time signal derived from the Fast Fourier Tran
 The signature of this method: librosa.feature.mfcc(y = None, sr = 22050, S = None, n_mfcc = 20, dct_type = 2, norm = ‘ortho’, lifter = 0). Of all of these parameters I used only three of them and they are y, sr and n_mfcc(the number of coefficients we extract from the file). 
 
 
-![img2](https://user-images.githubusercontent.com/59537490/98472654-266c3400-21fd-11eb-968b-66fab705638d.png)
+> mfcc_feature = librosa.feature.mfcc(y = signal, sr = sample_rate, n_mfcc = 40) 
 
 The representation of mfcc feature for the first audio file from our train set: 
 
@@ -51,7 +51,11 @@ I tried several parameters for C and gamma but the solution that brought me the 
 A neural network is a circuit of neurons(nodes). The connections of the biological neuron are modeled as weights. A positive weight reflects an excitatory connection, while negative values mean inhibitory connections. Inputs are modified by a weight and summed and activity functions is a linear combination [5].  These networks consist of an input layer, one or more hidden layers and an output layer. Each layer contains a number of neurons(nodes). The input layer has the number of nodes equal to the number of features extracted from each audio file (n_mfcc parameter) and the output layer contains 2 neurons in our case because this is a binary classification (0/1).  
 For each layer we need an activation function. For the intermediate layers I used the ReLu activation function because it reduces the vanishing gradient after propagation and has a better convergence. On the last layer I used the softmax activation function. The type of layer used is Dense because the neurons are completely interconnected. 
 
-![img7](https://user-images.githubusercontent.com/59537490/98475485-78fa2000-21fe-11eb-8a64-96c5203fb142.png)
+> model.add(layers.Dense(128, input_shape = (train_data[1],))) 
+> model.add(layers.Dense((128, activation = ‘relu’))
+> model.add(layers.Dense((128, activation = ‘relu’)) 
+> model.add(layers.Dense((2, activation = ‘softmax’)) 
+
 
 I trained this on 100 epochs and batch_size = 128. 
 Initially I did not prevent overfitting and the accuracy was 0.78 
@@ -75,16 +79,22 @@ Private score: 0.5804
 
 ![img10](https://user-images.githubusercontent.com/59537490/98477116-f6be2b80-21fe-11eb-935b-c63117277bd9.png)
 
-![img11](https://user-images.githubusercontent.com/59537490/98477801-31c05f00-21ff-11eb-95e5-4b19e112c618.png)
+> early_stopping = EarlyStopping(monitor = 'val_loss', mode = 'min', verbose = 1, patience = 15, min_delta=0.001) 
+> best_model = ModelCheckpoint(filepath = 'ch_model.h5', monitor = 'val_accuracy', mode = 'max', verbose = 1, save_best_only = True)
 
 **SVM**
 
-![img12](https://user-images.githubusercontent.com/59537490/98477998-51f01e00-21ff-11eb-946c-556eeb4675c4.png)
+> model = SVC() 
+> model.fit(train_data, train_labels) 
+> predictions = model.predict(validation_data) 
 
 Neural Networks with Keras: 
 
-![img13](https://user-images.githubusercontent.com/59537490/98478266-7a781800-21ff-11eb-830d-e865b4af4d08.png)
-![img14](https://user-images.githubusercontent.com/59537490/98478278-7b10ae80-21ff-11eb-9661-fc3af6553e83.png)
+> model = Sequential() model.add(layers.Dense(128, activation='relu', input_shape=(train_data.shape[1],))) 
+> model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001)))    >model.add(GaussianDropout(0.1)) 
+> model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001))) >model.add(GaussianDropout(0.1)) 
+>model.add(layers.Dense(2, activation='softmax')) 
+> model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy']) >history = model.fit(train_data, train_labels, validation_data = (validation_data, validation_labels), epochs = 100, batch_size = 128)
 
 Bibliography 
  
