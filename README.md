@@ -6,8 +6,10 @@ Training a model for surgical mask detection in the context of the COVID-19. It 
 ### Data preprocessing 
 In order to process the audio files efficiently and extract only the necessary elements from them, I read the data from the file with librosa which is a python package for music and audio analysis. This library returns a tuple with the signal and sample rate (samples that we have in a second). The audio file will be automatically resampled to the given rate (default for sr parameter is 22050) [1].
 
-![img1](https://user-images.githubusercontent.com/59537490/98472621-ead16a00-21fc-11eb-82c5-6e2a6a20bbe5.png)
+
 > signal, sample_rate = librosa.load(filepath, res_type = 'kaiser_fast') 
+
+
 To extract the features from audio I used *librosa feature*, *spectograms* and MFCCs (Mel Frequency Cepstral Coefficients). A spectogram is a visual representation of the frequencies of a signal in time. The MFCCs of a signal are small set of features which concisely describe the overall shape of a spectral envelope.[2] The MFCCs coefficients contain information about the rate changes in the different spectrum bands.  
 “The most prevalent and dominant method used to extract spectral features is calculating Mel-Frequency-Cepstral-Coefficients. MFCCs are one of the most popular feature extraction techniques used in speech recognition based on the human ear scale. This is a representation of the 
 real cepstral of a windowed short-time signal derived from the Fast Fourier Transform of that signal. The speech signal is first divided into time frames consisting of an arbitrary number of banks. For each speech frame, a set of MFCC is computed.” [3] That’s why I chose to use this way to extract the features from audio files given the nature of those records. 
