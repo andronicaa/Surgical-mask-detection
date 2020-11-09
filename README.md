@@ -107,7 +107,9 @@ Bibliography
 3. Feature Extraction Methods LPC, PLP and MFCC In Speech Recognition; Namrata Dave, International Journal for Advance Research in Enginerring And Technology, Volume 1, Issuse VI, July 2013 
 4. https://en.wikipedia.org/wiki/Precision_and_recall, last edited on 24 May 2020, at 19:54(UTC) 
 5. https://en.wikipedia.org/wiki/Neural_network, last edited on 24 May 2020, at 20:45(UTC) 
-6. https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-theright-time-using-early-stopping/ (for early stopping and model checkpoint) 7. https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/ 8. Audio Music Classification Using Support Vector Machine; Cyril Laurier 
+6. https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-theright-time-using-early-stopping/ (for early stopping and model checkpoint) 
+7. https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/ 
+8. Audio Music Classification Using Support Vector Machine; Cyril Laurier 
  
  
  
