@@ -79,22 +79,25 @@ Private score: 0.5804
 
 ![img10](https://user-images.githubusercontent.com/59537490/98477116-f6be2b80-21fe-11eb-935b-c63117277bd9.png)
 
-> early_stopping = EarlyStopping(monitor = 'val_loss', mode = 'min', verbose = 1, patience = 15, min_delta=0.001) 
-> best_model = ModelCheckpoint(filepath = 'ch_model.h5', monitor = 'val_accuracy', mode = 'max', verbose = 1, save_best_only = True)
+> early_stopping = EarlyStopping(monitor = 'val_loss', mode = 'min', verbose = 1, patience = 15, min_delta=0.001) <br/>
+> best_model = ModelCheckpoint(filepath = 'ch_model.h5', monitor = 'val_accuracy', mode = 'max', verbose = 1, save_best_only = True) <br/>
 
 **SVM**
 
-> model = SVC() 
-> model.fit(train_data, train_labels) 
-> predictions = model.predict(validation_data) 
+> model = SVC() <br/>
+> model.fit(train_data, train_labels) <br/>
+> predictions = model.predict(validation_data) <br/>
 
 Neural Networks with Keras: 
 
-> model = Sequential() model.add(layers.Dense(128, activation='relu', input_shape=(train_data.shape[1],))) 
-> model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001)))    >model.add(GaussianDropout(0.1)) 
-> model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001))) >model.add(GaussianDropout(0.1)) 
->model.add(layers.Dense(2, activation='softmax')) 
-> model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy']) >history = model.fit(train_data, train_labels, validation_data = (validation_data, validation_labels), epochs = 100, batch_size = 128)
+> model = Sequential() model.add(layers.Dense(128, activation='relu', input_shape=(train_data.shape[1],))) <br/>
+model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001))) <br/>
+model.add(GaussianDropout(0.1)) <br/>
+model.add(layers.Dense(128, activation='relu', kernel_regularizer = l2(0.001)))<br/>
+model.add(GaussianDropout(0.1)) <br/>
+model.add(layers.Dense(2, activation='softmax')) <br/>
+model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy']) <br/>
+history = model.fit(train_data, train_labels, validation_data = (validation_data, validation_labels), epochs = 100, batch_size = 128) <br/>
 
 Bibliography 
  
