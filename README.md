@@ -51,10 +51,10 @@ I tried several parameters for C and gamma but the solution that brought me the 
 A neural network is a circuit of neurons(nodes). The connections of the biological neuron are modeled as weights. A positive weight reflects an excitatory connection, while negative values mean inhibitory connections. Inputs are modified by a weight and summed and activity functions is a linear combination [5].  These networks consist of an input layer, one or more hidden layers and an output layer. Each layer contains a number of neurons(nodes). The input layer has the number of nodes equal to the number of features extracted from each audio file (n_mfcc parameter) and the output layer contains 2 neurons in our case because this is a binary classification (0/1).  
 For each layer we need an activation function. For the intermediate layers I used the ReLu activation function because it reduces the vanishing gradient after propagation and has a better convergence. On the last layer I used the softmax activation function. The type of layer used is Dense because the neurons are completely interconnected. 
 
-> model.add(layers.Dense(128, input_shape = (train_data[1],))) 
-model.add(layers.Dense((128, activation = ‘relu’))
-model.add(layers.Dense((128, activation = ‘relu’)) 
-model.add(layers.Dense((2, activation = ‘softmax’)) 
+> model.add(layers.Dense(128, input_shape = (train_data[1],))) <br/>
+model.add(layers.Dense((128, activation = ‘relu’)) <br/>
+model.add(layers.Dense((128, activation = ‘relu’)) <br/>
+model.add(layers.Dense((2, activation = ‘softmax’)) <br/>
 
 
 I trained this on 100 epochs and batch_size = 128. 
